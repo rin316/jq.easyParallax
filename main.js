@@ -125,33 +125,36 @@
 			});
 		});
 
-		$('.box').each(function () {
-			new Parallax(this, {
-				animation: 'rightToLeft'
-			});
-		});
-
-
 //		$('.box').each(function () {
-//			var self = this;
-//			var elmPosTop = 1000;
-//
-//			_action();
-//			_calc();
-//
-//
-//			function _action() {
-//				new Parallax(self, {
-//					animation: 'rightToLeft'
-//					,elmPosTop: elmPosTop
-//				});
-//			}
-//
-//			function _calc() {
-//
-//			}
-//
+//			new Parallax(this, {
+//				animation: 'rightToLeft'
+//			});
 //		});
+
+
+		var $group = $('.box');
+		var baseElmPosTop = $group.eq(0).offset().top;
+		var addNum = 50;
+
+		$group.each(function () {
+			var self = this;
+
+			_action();
+			_calc();
+
+
+			function _action() {
+				new Parallax(self, {
+					animation: 'rightToLeft'
+					,elmPosTop: baseElmPosTop
+				});
+			}
+
+			function _calc() {
+				baseElmPosTop += addNum;
+			}
+
+		});
 		
 		
 
