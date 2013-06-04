@@ -7,13 +7,16 @@
 	$(document).ready(function(){
 		var Parallax;
 		var DEFAULT_OPTIONS;
+		var jarallax = new Jarallax(new ControllerScroll(true));
 
 		/**
 		 * DEFAULT_OPTIONS
 		 */
 		DEFAULT_OPTIONS = {
-			animationStart: 0.5 // {number} - 1:画面の高さが残り100%でanimation start, 0.5:残り50%でanimation start.
-			,animationEnd: 0.3 // {number} - 0:画面の高さが残り0%でanimation end, 0.3:残り30%でanimation end.
+			animation: 'fade'
+			,animationStart: 0.5 // {number} - 1:画面の高さが残り100%でanimation start, 0.5:残り50%でanimation start.
+			,animationEnd: 0.4 // {number} - 0:画面の高さが残り0%でanimation end, 0.3:残り30%でanimation end.
+			,elmPosTop: false
 		}
 
 		/*
@@ -22,15 +25,29 @@
 		var Parallax = function (elm, options) {
 			var self = this;
 			self.o = $.extend({}, DEFAULT_OPTIONS, options);
+
 			self.$elm = $(elm);
+			// elmのposition top位置を取得
+			self.elmPosTop = (self.o.elmPosTop) ? self.o.elmPosTop: self.$elm.offset().top;
+			self.documentH = $(document).height();
+			self.windowH = $(window).height();
+			self.startPosTop = self.elmPosTop - (self.windowH * self.o.animationStart);
+			self.endPosTop = self.elmPosTop - (self.windowH * self.o.animationEnd);
+			self.startPercent = self.startPosTop / (self.documentH - self.windowH) * 100;
+			self.endPercent = (function () {
+				var endPercent = self.endPosTop / (self.documentH - self.windowH) * 100;
+				return (endPercent > 100) ? 100: endPercent;
+			})();
+
 			self._init();
 		}
 
 		Parallax.prototype._init = function () {
 			var self = this;
 			self._refresh();
-			self._eventify();
+			self._draw();
 			self._jarallax();
+			self._eventify();
 		}
 
 		Parallax.prototype._eventify = function () {
@@ -40,30 +57,13 @@
 				self._refresh();
 				self._draw();
 			});
-
-//			$(window).on('resize', function () {
-//				self._jarallax();
-//			});
 		}
 
 		Parallax.prototype._refresh = function () {
 			var self = this;
 			// 現在のスクロールtop位置を取得
 			self.scrollPosTop = $(document).scrollTop();
-			// elmのposition top位置を取得
-			self.elmPosTop = self.$elm.offset().top;
-			self.documentH = $(document).height();
-			self.windowH = $(window).height();
 			self.scrollPercent = self.scrollPosTop / (self.documentH - self.windowH) * 100;
-			self.startPosTop = self.elmPosTop - (self.windowH * self.o.animationStart);
-			self.endPosTop = self.elmPosTop - (self.windowH * self.o.animationEnd);
-			self.startPercent = self.startPosTop / (self.documentH - self.windowH) * 100;
-			self.endPercent = (function () {
-				var endPercent = self.endPosTop / (self.documentH - self.windowH) * 100;
-				return (endPercent > 100) ? 100: endPercent;
-			})();
-
-
 		}
 
 		// 表示
@@ -83,20 +83,75 @@
 
 		Parallax.prototype._jarallax = function () {
 			var self = this;
-			var jarallax = new Jarallax(new ControllerScroll(true));
 
-			jarallax.addAnimation(self.$elm,[
-				{progress:'0%', opacity:'0'},
-				{progress: self.startPercent+'%', opacity:'0'},
-				{progress: self.endPercent+'%', opacity:'1'},
-				{progress:'100%', opacity:'1'}
-			]);
+			switch (self.o.animation) {
+				case 'fade':
+					jarallax.addAnimation(self.$elm,[
+						{progress:'0%', opacity:'0'},
+						{progress: self.startPercent+'%', opacity:'0'},
+						{progress: self.endPercent+'%', opacity:'1'},
+						{progress:'100%', opacity:'1'}
+					]);
+					break;
+
+				case 'rightToLeft':
+					jarallax.addAnimation(self.$elm,[
+						{progress:'0%', opacity:'0', left: '50px'},
+						{progress: self.startPercent+'%', opacity:'0', left: '50px'},
+						{progress: self.endPercent+'%', opacity:'1', left: '0px'},
+						{progress:'100%', opacity:'1', left: '0px'}
+					]);
+					break;
+
+				case 'bottomToTop':
+					jarallax.addAnimation(self.$elm,[
+						{progress:'0%', opacity:'0', top: '50px'},
+						{progress: self.startPercent+'%', opacity:'0', top: '50px'},
+						{progress: self.endPercent+'%', opacity:'1', top: '0px'},
+						{progress:'100%', opacity:'1', top: '0px'}
+					]);
+					break;
+
+				default:
+					break;
+			}
 		}
 
 
-		$('.box').each(function () {
-			new Parallax(this);
+
+		$('.p').each(function () {
+			new Parallax(this, {
+				animation: 'rightToLeft'
+			});
 		});
+
+		$('.box').each(function () {
+			new Parallax(this, {
+				animation: 'rightToLeft'
+			});
+		});
+
+
+//		$('.box').each(function () {
+//			var self = this;
+//			var elmPosTop = 1000;
+//
+//			_action();
+//			_calc();
+//
+//
+//			function _action() {
+//				new Parallax(self, {
+//					animation: 'rightToLeft'
+//					,elmPosTop: elmPosTop
+//				});
+//			}
+//
+//			function _calc() {
+//
+//			}
+//
+//		});
 		
 		
 

@@ -63,12 +63,17 @@ hr {
 
 
 .box {
+	position: relative;
 	margin: 0 0 20px;
 	padding: 100px 0;
 	background: #D264B7;
 	font-size: 100px;
 	line-height: 1.5;
 	text-align: center;
+}
+
+.p {
+	position: relative;
 }
 
 .scrollParamArea {
