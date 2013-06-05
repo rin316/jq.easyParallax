@@ -141,7 +141,6 @@
 					}
 				});
 			};
-
 		})();
 
 
@@ -158,7 +157,7 @@
 			 * DEFAULT_OPTIONS
 			 */
 			DEFAULT_OPTIONS = {
-
+				addNum: 50
 			}
 
 			/*
@@ -169,17 +168,29 @@
 				self.o = $.extend({}, DEFAULT_OPTIONS, options);
 
 				self.$elm = $(elm);
+				self.$items = self.$elm.children();
+				self.o.elmPosTop = self.$items.eq(0).offset().top;
 
 				self._init();
 			}
 
 			ParallaxGroup.prototype._init = function () {
 				var self = this;
-				self._refresh();
+				self.$items.each(function () {
+					self.$item = $(this);
+					self._action();
+					self._calc();
+				});
 			}
 
-			ParallaxGroup.prototype._refresh = function () {
+			ParallaxGroup.prototype._action = function () {
 				var self = this;
+				self.$item.parallax(self.o);
+			}
+
+			ParallaxGroup.prototype._calc = function () {
+				var self = this;
+				self.o.elmPosTop += self.o.addNum;
 			}
 
 			/**
@@ -201,10 +212,7 @@
 					}
 				});
 			};
-
 		})();
-
-
 
 
 
@@ -224,34 +232,9 @@
 			animation: 'bottomToTop'
 		});
 
-		var $elm = $('.ui-parallaxGroup');
-		var $items = $elm.children();
-		var baseElmPosTop = $items.eq(0).offset().top;
-		var addNum = 50;
-
-		$items.each(function () {
-			var self = this;
-
-			function _init() {
-				_action();
-				_calc();
-			}
-
-			function _action() {
-				$(self).parallax({
-					animation: 'rightToLeft'
-					,elmPosTop: baseElmPosTop
-				});
-			}
-
-			function _calc() {
-				baseElmPosTop += addNum;
-			}
-
-			_init();
+		$('.ui-parallaxGroup').parallaxGroup({
+			animation: 'rightToLeft'
 		});
-		
-		
 
 
 	});
