@@ -2,7 +2,7 @@
  * main.js
  *
  */
- 
+
 ;(function ($, window, undefined) {
 	$(document).ready(function(){
 		/*
@@ -19,7 +19,7 @@
 			 */
 			DEFAULT_OPTIONS = {
 				animation: 'fade'
-				,animationStart: 0.5 // {number} - 1:画面の高さが残り100%でanimation start, 0.5:残り50%でanimation start.
+				,animationStart: 0.6 // {number} - 1:画面の高さが残り100%でanimation start, 0.5:残り50%でanimation start.
 				,animationEnd: 0.4 // {number} - 0:画面の高さが残り0%でanimation end, 0.3:残り30%でanimation end.
 				,elmPosTop: false
 			}
@@ -122,8 +122,8 @@
 
 					case 'bottomToTop':
 						jarallax.addAnimation(self.$elm,[
-							{progress:'0%', opacity:'0', top: '50px'},
-							{progress: self.startPercent+'%', opacity:'0', top: '50px'},
+							{progress:'0%', opacity:'0', top: '100px'},
+							{progress: self.startPercent+'%', opacity:'0', top: '100px'},
 							{progress: self.endPercent+'%', opacity:'1', top: '0px'},
 							{progress:'100%', opacity:'1', top: '0px'}
 						]);
@@ -237,6 +237,8 @@
 				});
 			};
 		})();
+
+
 
 
 		$('[data-parallax]').parallax();
