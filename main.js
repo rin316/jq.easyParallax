@@ -32,6 +32,18 @@
 				self.o = $.extend({}, DEFAULT_OPTIONS, options);
 
 				self.$elm = $(elm);
+
+				// data属性がある場合はoption値を上書き
+				self.o.animation = (self.$elm.attr('data-parallax-animation'))
+					? (self.$elm.attr('data-parallax-animation'))
+					: self.o.animation;
+				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
+					? (self.$elm.attr('data-parallax-animationStart'))
+					: self.o.animationStart;
+				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd'))
+					? (self.$elm.attr('data-parallax-animationEnd'))
+					: self.o.animationEnd;
+
 				// elmのposition top位置を取得
 				self.elmPosTop = (self.o.elmPosTop) ? self.o.elmPosTop: self.$elm.offset().top;
 				self.documentH = $(document).height();
@@ -169,6 +181,18 @@
 
 				self.$elm = $(elm);
 				self.$items = self.$elm.children();
+
+				// data属性がある場合はoption値を上書き
+				self.o.animation = (self.$elm.attr('data-parallax-animation'))
+					? (self.$elm.attr('data-parallax-animation'))
+					: self.o.animation;
+				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
+					? (self.$elm.attr('data-parallax-animationStart'))
+					: self.o.animationStart;
+				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd'))
+					? (self.$elm.attr('data-parallax-animationEnd'))
+					: self.o.animationEnd;
+
 				self.o.elmPosTop = self.$items.eq(0).offset().top;
 
 				self._init();
@@ -215,26 +239,16 @@
 		})();
 
 
+		$('[data-parallax]').parallax();
+
+		$('[data-parallax-group]').parallaxGroup();
 
 		$('.p').parallax({
 			animation: 'rightToLeft'
 		});
 
-		$('.ui-parallax-fade').parallax({
-			animation: 'fade'
-		});
 
-		$('.ui-parallax-rightToLeft').parallax({
-			animation: 'rightToLeft'
-		});
 
-		$('.ui-parallax-bottomToTop').parallax({
-			animation: 'bottomToTop'
-		});
-
-		$('.ui-parallaxGroup').parallaxGroup({
-			animation: 'rightToLeft'
-		});
 
 
 	});
