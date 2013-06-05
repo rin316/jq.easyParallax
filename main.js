@@ -212,11 +212,19 @@
 			animation: 'rightToLeft'
 		});
 
-//		$('.box').parallax({
-//			animation: 'rightToLeft'
-//		});
+		$('.ui-parallax-fade').parallax({
+			animation: 'fade'
+		});
 
-		var $elm = $('.boxGroup');
+		$('.ui-parallax-rightToLeft').parallax({
+			animation: 'rightToLeft'
+		});
+
+		$('.ui-parallax-bottomToTop').parallax({
+			animation: 'bottomToTop'
+		});
+
+		var $elm = $('.ui-parallaxGroup');
 		var $items = $elm.children();
 		var baseElmPosTop = $items.eq(0).offset().top;
 		var addNum = 50;
