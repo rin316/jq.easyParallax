@@ -65,6 +65,7 @@
 				self._draw();
 				self._jarallax();
 				self._eventify();
+				self._trigger();
 			}
 
 			Parallax.prototype._eventify = function () {
@@ -73,6 +74,7 @@
 				$(window).on('scroll', function () {
 					self._refresh();
 					self._draw();
+					self._trigger();
 				});
 			}
 
@@ -96,6 +98,13 @@
 				$('.scrollParamArea .endPosTop').text('endPosTop: ' + self.endPosTop);
 				$('.scrollParamArea .startPercent').text('startPercent: ' + self.startPercent.toFixed(0));
 				$('.scrollParamArea .endPercent').text('endPercent: ' + self.endPercent.toFixed(0));
+			}
+
+			Parallax.prototype._trigger = function () {
+				var self = this;
+				if (self.scrollPosTop >= self.endPosTop) {
+					self.$elm.trigger('parallaxEnd');
+				}
 			}
 
 			Parallax.prototype._jarallax = function () {
@@ -248,6 +257,28 @@
 		$('.p').parallax({
 			animation: 'rightToLeft'
 		});
+
+
+		$('.ui-carousel').liquidCarousel({
+			autoPlay:             false // {boolean} - true: autoplay
+			,autoPlayHoverStop:    false // {boolean} - true: itemにマウスオーバー中はautoplayをストップ
+			,autoPlayInterval:     1000 // {number} (milli second) - autoplayの間隔
+		});
+
+		(function () {
+			var self = $('.event').data('parallax');
+			var isMoved = false;
+			self.$elm.on('parallaxEnd', function () {
+				if (isMoved === false) {
+					isMoved = true;
+					console.log( 'parallaxEnd!' );
+					var carousel = $('.ui-carousel').data('carousel');
+					carousel.autoPlay();
+				}
+
+			})
+		})();
+
 
 
 

@@ -21,6 +21,7 @@ var config = {
 	loaderName: 'loader.js',
 	loadFiles: [
 		'jquery.js'
+		,'jquery.liquidCarousel.js'
 		,'../../jarallax-0.2.3a.js'
 		,'../../main.js'
 	]
