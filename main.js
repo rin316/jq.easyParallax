@@ -37,12 +37,12 @@
 				self.o.animation = (self.$elm.attr('data-parallax-animation'))
 					? (self.$elm.attr('data-parallax-animation'))
 					: self.o.animation;
-				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
+				self.o.animationStart = parseFloat((self.$elm.attr('data-parallax-animationStart'))
 					? (self.$elm.attr('data-parallax-animationStart'))
-					: self.o.animationStart;
-				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd'))
+					: self.o.animationStart);
+				self.o.animationEnd = parseFloat((self.$elm.attr('data-parallax-animationEnd'))
 					? (self.$elm.attr('data-parallax-animationEnd'))
-					: self.o.animationEnd;
+					: self.o.animationEnd);
 
 				// elmのposition top位置を取得
 				self.elmPosTop = (self.o.elmPosTop) ? self.o.elmPosTop: self.$elm.offset().top;
@@ -178,7 +178,8 @@
 			 * DEFAULT_OPTIONS
 			 */
 			DEFAULT_OPTIONS = {
-				addNum: 50
+				addNum: 50 // {number}
+				,specifyChild: false // {boolean}
 			}
 
 			/*
@@ -195,12 +196,21 @@
 				self.o.animation = (self.$elm.attr('data-parallax-animation'))
 					? (self.$elm.attr('data-parallax-animation'))
 					: self.o.animation;
-				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
+				self.o.animationStart = parseFloat((self.$elm.attr('data-parallax-animationStart'))
 					? (self.$elm.attr('data-parallax-animationStart'))
-					: self.o.animationStart;
-				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd'))
+					: self.o.animationStart);
+				self.o.animationEnd = parseFloat((self.$elm.attr('data-parallax-animationEnd'))
 					? (self.$elm.attr('data-parallax-animationEnd'))
-					: self.o.animationEnd;
+					: self.o.animationEnd);
+//				self.o.specifyChild = (self.$elm.attr('data-parallax-specifyChild'))
+//					? (self.$elm.attr('data-parallax-specifyChild'))
+//					: self.o.specifyChild;
+
+//				self.$items = (self.o.specifyChild)
+//					? self.$elm.children()
+//					: self.$elm.children();
+
+
 
 				self.o.elmPosTop = self.$items.eq(0).offset().top;
 
@@ -271,9 +281,9 @@
 			self.$elm.on('parallaxEnd', function () {
 				if (isMoved === false) {
 					isMoved = true;
-					console.log( 'parallaxEnd!' );
 					var carousel = $('.ui-carousel').data('carousel');
 					carousel.autoPlay();
+					carousel.moveBind(carousel.index + 1);
 				}
 
 			})
