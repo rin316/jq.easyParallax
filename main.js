@@ -37,11 +37,11 @@
 				self.o.animation = (self.$elm.attr('data-parallax-animation'))
 					? (self.$elm.attr('data-parallax-animation'))
 					: self.o.animation;
-				self.o.animationStart = parseFloat((self.$elm.attr('data-parallax-animationStart'))
-					? (self.$elm.attr('data-parallax-animationStart'))
-					: self.o.animationStart);
-				self.o.animationEnd = parseFloat((self.$elm.attr('data-parallax-animationEnd'))
-					? (self.$elm.attr('data-parallax-animationEnd'))
+				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
+					? parseFloat(self.$elm.attr('data-parallax-animationStart'))
+					: self.o.animationStart;
+				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd')
+					? parseFloat(self.$elm.attr('data-parallax-animationEnd'))
 					: self.o.animationEnd);
 
 				// elmのposition top位置を取得
@@ -180,6 +180,7 @@
 			DEFAULT_OPTIONS = {
 				addNum: 50 // {number}
 				,specifyChild: false // {boolean}
+				,childClassSelector: '[data-parallax-child]' // {selector} - ('[data-parallax-child]' | '.ui-parallax-child')
 			}
 
 			/*
@@ -196,21 +197,20 @@
 				self.o.animation = (self.$elm.attr('data-parallax-animation'))
 					? (self.$elm.attr('data-parallax-animation'))
 					: self.o.animation;
-				self.o.animationStart = parseFloat((self.$elm.attr('data-parallax-animationStart'))
-					? (self.$elm.attr('data-parallax-animationStart'))
-					: self.o.animationStart);
-				self.o.animationEnd = parseFloat((self.$elm.attr('data-parallax-animationEnd'))
-					? (self.$elm.attr('data-parallax-animationEnd'))
+				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
+					? parseFloat(self.$elm.attr('data-parallax-animationStart'))
+					: self.o.animationStart;
+				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd')
+					? parseFloat(self.$elm.attr('data-parallax-animationEnd'))
 					: self.o.animationEnd);
-//				self.o.specifyChild = (self.$elm.attr('data-parallax-specifyChild'))
-//					? (self.$elm.attr('data-parallax-specifyChild'))
-//					: self.o.specifyChild;
+				self.o.specifyChild = (self.$elm.attr('data-parallax-specifyChild'))
+					? (self.$elm.attr('data-parallax-specifyChild'))
+					: self.o.specifyChild;
 
-//				self.$items = (self.o.specifyChild)
-//					? self.$elm.children()
-//					: self.$elm.children();
-
-
+				// set items - パララックスを適用させるitems
+				self.$items = (self.o.specifyChild)
+					? self.$elm.find(self.o.childClassSelector)
+					: self.$elm.children();
 
 				self.o.elmPosTop = self.$items.eq(0).offset().top;
 
@@ -276,9 +276,9 @@
 		});
 
 		(function () {
-			var self = $('.event').data('parallax');
+			var parallax = $('.ui-parallax-trigger').data('parallax');
 			var isMoved = false;
-			self.$elm.on('parallaxEnd', function () {
+			parallax.$elm.on('parallaxEnd', function () {
 				if (isMoved === false) {
 					isMoved = true;
 					var carousel = $('.ui-carousel').data('carousel');
