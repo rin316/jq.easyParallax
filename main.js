@@ -21,7 +21,7 @@
 				animation: 'fade'
 				,animationStart: 0.6 // {number} - 1:画面の高さが残り100%でanimation start, 0.5:残り50%でanimation start.
 				,animationEnd: 0.4 // {number} - 0:画面の高さが残り0%でanimation end, 0.3:残り30%でanimation end.
-				,elmPosTop: false //
+				,elmPosTop: 'auto' // {string | number} - 'auto':elmのoffset top位置を自動取得, 100: bodyから100pxの位置にelmがあるとして計算されるようになる。parallax-groupで使用
 			}
 
 			/*
@@ -45,7 +45,9 @@
 					: self.o.animationEnd);
 
 				// elmのposition top位置を取得
-				self.elmPosTop = (self.o.elmPosTop) ? self.o.elmPosTop: self.$elm.offset().top;
+				self.elmPosTop = (self.o.elmPosTop === 'auto')
+					? self.$elm.offset().top
+					: self.o.elmPosTop;
 				self.documentH = $(document).height();
 				self.windowH = $(window).height();
 				self.startPosTop = self.elmPosTop - (self.windowH * self.o.animationStart);
@@ -212,6 +214,7 @@
 					? self.$elm.find(self.o.childClassSelector)
 					: self.$elm.children();
 
+				// 最初の子要素のoffset top
 				self.o.elmPosTop = self.$items.eq(0).offset().top;
 
 				self._init();
