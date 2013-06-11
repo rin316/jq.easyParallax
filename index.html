@@ -36,8 +36,25 @@
 	<!--<hr>-->
 
 	<div class="container">
-		<h2>DEMO</h2>
+		<h2>概要</h2>
+		<p>指定した要素が画面中央に来た時にパララックス表示を行う</p>
 
+		<h3>設定方法</h3>
+		<h4>JavaScript側</h4>
+			<pre>
+data属性を使って指定する場合: $('[data-parallax]').parallax();
+classを使って指定する場合:    $('.parallax').parallax();
+</pre>
+		<h4>html側</h4>
+			<pre>
+data属性を使って指定する場合: data-parallax="true"
+classを使って指定する場合:    class="parallax"
+</pre>
+	</div>
+	<hr>
+
+	<div class="container">
+		<h2>demos</h2>
 		<div class="scrollParamArea">
 			<div class="scroll"></div>
 			<div class="scrollPercent"></div>
@@ -55,11 +72,8 @@
 		</div>
 
 		<div class="demoArea">
-			<div>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓</div>
+			<div>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓</div>
 
-			<h3>設定方法</h3>
-			<pre>data-parallax="true"</pre>
-			<p>data属性を設定すると、その要素が画面中央に来た時にパララックス表示される</p>
 			<div>
 				<div data-parallax="true" class="box box1">1</div>
 				<div data-parallax="true" data-parallax-animation="fade" class="box box2">
@@ -67,10 +81,10 @@
 					<p class="p p2">p2</p>
 					<p class="p p3">p3</p>
 				</div>
-				<pre>data-parallax="true" data-parallax-animation="rightToLeft"</pre>
+				<pre>data-parallax-animation="rightToLeft"</pre>
 				<div data-parallax="true" data-parallax-animation="rightToLeft" class="box box3">3</div>
 				<div data-parallax="true" data-parallax-animation="rightToLeft" class="box box4">4</div>
-				<pre>data-parallax="true" data-parallax-animation="bottomToTop"</pre>
+				<pre>data-parallax-animation="bottomToTop"</pre>
 				<div data-parallax="true" data-parallax-animation="bottomToTop" class="box box5">5</div>
 				<h4>タイミング変更</h4>
 				<pre>data-parallax-animationStart="0.2" data-parallax-animationEnd="0.1"</pre>
