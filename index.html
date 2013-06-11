@@ -93,8 +93,21 @@ classを使って指定する場合:    class="parallax"
 			</div>
 
 			<h3>グループ指定</h3>
-			<pre>data-parallax-group="true"</pre>
-			<p>最初の1つ目の反応後、指定px毎に次の要素を反応させる(画面中央に来るのを待たずに反応させる)</p>
+			<p>親要素を指定すると、その中の子要素を自動的にパララックス表示させる。<br>
+				最初の子要素の反応後、指定px毎に次の子要素を反応させる(画面中央に来るのを待たずに反応させる)</p>
+
+			<h4>JavaScript側</h4>
+			<pre>
+data属性を使って指定する場合: $('[data-parallax-group]').parallaxGroup();
+classを使って指定する場合:    $('.parallax-group').parallaxGroup();
+</pre>
+			<h4>html側</h4>
+			<pre>
+data属性を使って指定する場合: data-parallax-group="true"
+classを使って指定する場合:    class="parallax-group"
+</pre>
+
+
 			<div data-parallax-group="true" data-parallax-animation="rightToLeft">
 				<div class="box box1">1</div>
 				<div class="box box2">
@@ -137,6 +150,7 @@ classを使って指定する場合:    class="parallax"
 parent: data-parallax-specifyChild="true" | [plugin option] specifyChild: true
 child:  data-parallax-child="true" | [plugin option] childClassSelector: '.ui-parallax-child'</pre>
 			<div data-parallax-group="true" data-parallax-specifyChild="true" data-parallax-animation="rightToLeft">
+				<div data-parallax-child="true" class="box">aaa</div>
 				<div class="row">
 					<div class="span6">
 						<div data-parallax-child="true" class="box">aaa</div>
@@ -146,24 +160,18 @@ child:  data-parallax-child="true" | [plugin option] childClassSelector: '.ui-pa
 					</div>
 					<div class="span6">
 						<div class="row">
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
-							<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
 						</div>
 					</div>
 				</div>
-
-				<!--<div class="row">-->
-					<!--<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>-->
-					<!--<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>-->
-					<!--<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>-->
-					<!--<div data-parallax-child="true" class="span3"><div class="box">aaa</div></div>-->
-				<!--</div>-->
+				<div data-parallax-child="true" class="box">aaa</div>
 			</div>
 
 			<h3>callback</h3>
@@ -177,15 +185,14 @@ $('.ui-carousel').liquidCarousel({
 
 (function () {
 	var parallax = $('.ui-parallax-trigger').data('parallax');
+	var carousel = $('.ui-carousel').data('carousel');
 	var isMoved = false;
 	parallax.$elm.on('parallaxEnd', function () {
 		if (isMoved === false) {
 			isMoved = true;
-			var carousel = $('.ui-carousel').data('carousel');
 			carousel.autoPlay();
 			carousel.moveBind(carousel.index + 1);
 		}
-
 	})
 })();
 </pre>

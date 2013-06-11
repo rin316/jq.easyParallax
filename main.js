@@ -21,7 +21,7 @@
 				animation: 'fade'
 				,animationStart: 0.6 // {number} - 1:画面の高さが残り100%でanimation start, 0.5:残り50%でanimation start.
 				,animationEnd: 0.4 // {number} - 0:画面の高さが残り0%でanimation end, 0.3:残り30%でanimation end.
-				,elmPosTop: false
+				,elmPosTop: false //
 			}
 
 			/*
@@ -277,15 +277,14 @@
 
 		(function () {
 			var parallax = $('.ui-parallax-trigger').data('parallax');
+			var carousel = $('.ui-carousel').data('carousel');
 			var isMoved = false;
 			parallax.$elm.on('parallaxEnd', function () {
 				if (isMoved === false) {
 					isMoved = true;
-					var carousel = $('.ui-carousel').data('carousel');
 					carousel.autoPlay();
 					carousel.moveBind(carousel.index + 1);
 				}
-
 			})
 		})();
 
