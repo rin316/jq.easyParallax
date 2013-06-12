@@ -22,7 +22,8 @@ var config = {
 	loadFiles: [
 		'jquery.js'
 		,'jquery.liquidCarousel.js'
-		,'../../jarallax-0.2.3a.js'
+		,'jarallax-0.2.3a.js'
+		,'../../jquery.easyParallax.js'
 		,'../../main.js'
 	]
 //==========================================================================
