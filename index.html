@@ -13,7 +13,7 @@
 
 <div id="header">
 	<div class="container">
-		<h1>jq.Jarallax_parallax [DEMO]</h1>
+		<h1>easyParallax [DEMO]</h1>
 		<div>
 			<p>[Code]<br />
 				<a href="https://github.com/rin316/jq.jarallax_parallax">https://github.com/rin316/jq.jarallax_parallax</a></p>
@@ -37,18 +37,20 @@
 
 	<div class="container">
 		<h2>概要</h2>
-		<p>指定した要素が画面中央に来た時にパララックス表示を行う</p>
+		<p>指定した要素が画面中央に来た時にパララックス表示させるjQuery plugin.<br>
+			@dependent jquery.js<br>
+			@dependent jarallax.js - http://jarallax.com</p>
 
 		<h3>設定方法</h3>
 		<h4>JavaScript側</h4>
 			<pre>
-data属性を使って指定する場合: $('[data-parallax]').parallax();
-classを使って指定する場合:    $('.parallax').parallax();
+data属性を使って指定する場合: $('[data-easyParallax]').easyParallax();
+classを使って指定する場合:    $('.easyParallax').easyParallax();
 </pre>
 		<h4>html側</h4>
 			<pre>
-data属性を使って指定する場合: data-parallax="true"
-classを使って指定する場合:    class="parallax"
+data属性を使って指定する場合: data-easyParallax="true"
+classを使って指定する場合:    class="easyParallax"
 </pre>
 	</div>
 	<hr>
@@ -75,21 +77,21 @@ classを使って指定する場合:    class="parallax"
 			<div>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓<br>↓</div>
 
 			<div>
-				<div data-parallax="true" class="box box1">1</div>
-				<div data-parallax="true" data-parallax-animation="fade" class="box box2">
+				<div data-easyParallax="true" class="box box1">1</div>
+				<div data-easyParallax="true" data-easyParallax-animation="fade" class="box box2">
 					<p class="p p1">p1</p>
 					<p class="p p2">p2</p>
 					<p class="p p3">p3</p>
 				</div>
-				<pre>data-parallax-animation="rightToLeft"</pre>
-				<div data-parallax="true" data-parallax-animation="rightToLeft" class="box box3">3</div>
-				<div data-parallax="true" data-parallax-animation="rightToLeft" class="box box4">4</div>
-				<pre>data-parallax-animation="bottomToTop"</pre>
-				<div data-parallax="true" data-parallax-animation="bottomToTop" class="box box5">5</div>
+				<pre>data-easyParallax-animation="rightToLeft"</pre>
+				<div data-easyParallax="true" data-easyParallax-animation="rightToLeft" class="box box3">3</div>
+				<div data-easyParallax="true" data-easyParallax-animation="rightToLeft" class="box box4">4</div>
+				<pre>data-easyParallax-animation="bottomToTop"</pre>
+				<div data-easyParallax="true" data-easyParallax-animation="bottomToTop" class="box box5">5</div>
 				<h4>タイミング変更</h4>
-				<pre>data-parallax-animationStart="0.2" data-parallax-animationEnd="0.1"</pre>
-				<div data-parallax="true" data-parallax-animation="bottomToTop" data-parallax-animationStart="0.2" data-parallax-animationEnd="0.1" class="box box6">6<br>data-parallax-animationStart="0.2" data-parallax-animationEnd="0.1"</div>
-				<div data-parallax="true" data-parallax-animation="bottomToTop" class="box box7">7</div>
+				<pre>data-easyParallax-animationStart="0.2" data-easyParallax-animationEnd="0.1"</pre>
+				<div data-easyParallax="true" data-easyParallax-animation="bottomToTop" data-easyParallax-animationStart="0.2" data-easyParallax-animationEnd="0.1" class="box box6">6<br>data-easyParallax-animationStart="0.2" data-easyParallax-animationEnd="0.1"</div>
+				<div data-easyParallax="true" data-easyParallax-animation="bottomToTop" class="box box7">7</div>
 			</div>
 
 			<h3>グループ指定</h3>
@@ -98,17 +100,17 @@ classを使って指定する場合:    class="parallax"
 
 			<h4>JavaScript側</h4>
 			<pre>
-data属性を使って指定する場合: $('[data-parallax-group]').parallaxGroup();
-classを使って指定する場合:    $('.parallax-group').parallaxGroup();
+data属性を使って指定する場合: $('[data-easyParallax-group]').easyParallaxGroup();
+classを使って指定する場合:    $('.easyParallax-group').easyParallaxGroup();
 </pre>
 			<h4>html側</h4>
 			<pre>
-data属性を使って指定する場合: data-parallax-group="true"
-classを使って指定する場合:    class="parallax-group"
+data属性を使って指定する場合: data-easyParallax-group="true"
+classを使って指定する場合:    class="easyParallax-group"
 </pre>
 
 
-			<div data-parallax-group="true" data-parallax-animation="rightToLeft">
+			<div data-easyParallax-group="true" data-easyParallax-animation="rightToLeft">
 				<div class="box box1">1</div>
 				<div class="box box2">
 					<p class="p p1">p1</p>
@@ -120,7 +122,7 @@ classを使って指定する場合:    class="parallax-group"
 				<span>bbb</span>
 				<span>ccc</span>
 
-				<div data-parallax-animation="bottomToTop" class="box box3">3<br>data-parallax-animation="bottomToTop"</div>
+				<div data-easyParallax-animation="bottomToTop" class="box box3">3<br>data-easyParallax-animation="bottomToTop"</div>
 				<div class="box box4">4</div>
 				<div class="box box5">5</div>
 				<div class="box box6">6</div>
@@ -129,7 +131,7 @@ classを使って指定する場合:    class="parallax-group"
 
 			<hr>
 
-			<div data-parallax-group="true" data-parallax-animation="rightToLeft">
+			<div data-easyParallax-group="true" data-easyParallax-animation="rightToLeft">
 				<div class="box box1">1</div>
 				<div class="box box2">
 					<p class="p p1">p1</p>
@@ -147,31 +149,31 @@ classを使って指定する場合:    class="parallax-group"
 
 			<h3>子要素を手動で指定</h3>
 			<pre>
-parent: data-parallax-specifyChild="true" | [plugin option] specifyChild: true
-child:  data-parallax-child="true" | [plugin option] childClassSelector: '.ui-parallax-child'</pre>
-			<div data-parallax-group="true" data-parallax-specifyChild="true" data-parallax-animation="rightToLeft">
-				<div data-parallax-child="true" class="box">aaa</div>
+parent: data-easyParallax-specifyChild="true" | [plugin option] specifyChild: true
+child:  data-easyParallax-child="true" | [plugin option] childClassSelector: '.ui-easyParallax-child'</pre>
+			<div data-easyParallax-group="true" data-easyParallax-specifyChild="true" data-easyParallax-animation="rightToLeft">
+				<div data-easyParallax-child="true" class="box">aaa</div>
 				<div class="row">
 					<div class="span6">
-						<div data-parallax-child="true" class="box">aaa</div>
-						<div data-parallax-child="true" class="box">aaa</div>
-						<div data-parallax-child="true" class="box">aaa</div>
-						<div data-parallax-child="true" class="box">aaa</div>
+						<div data-easyParallax-child="true" class="box">aaa</div>
+						<div data-easyParallax-child="true" class="box">aaa</div>
+						<div data-easyParallax-child="true" class="box">aaa</div>
+						<div data-easyParallax-child="true" class="box">aaa</div>
 					</div>
 					<div class="span6">
 						<div class="row">
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
-							<div class="span3"><div data-parallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
+							<div class="span3"><div data-easyParallax-child="true" class="box">aaa</div></div>
 						</div>
 					</div>
 				</div>
-				<div data-parallax-child="true" class="box">aaa</div>
+				<div data-easyParallax-child="true" class="box">aaa</div>
 			</div>
 
 			<h3>callback</h3>
@@ -184,10 +186,10 @@ $('.ui-carousel').liquidCarousel({
 });
 
 (function () {
-	var parallax = $('.ui-parallax-trigger').data('parallax');
+	var easyParallax = $('.ui-easyParallax-trigger').data('easyParallax');
 	var carousel = $('.ui-carousel').data('carousel');
 	var isMoved = false;
-	parallax.$elm.on('parallaxEnd', function () {
+	easyParallax.$elm.on('easyParallaxEnd', function () {
 		if (isMoved === false) {
 			isMoved = true;
 			carousel.autoPlay();
@@ -196,7 +198,7 @@ $('.ui-carousel').liquidCarousel({
 	})
 })();
 </pre>
-			<div data-parallax="true" data-parallax-animationStart="0.9" data-parallax-animationEnd="0.5" data-parallax-animation="rightToLeft" class="ui-parallax-trigger ui-carousel box">
+			<div data-easyParallax="true" data-easyParallax-animationStart="0.9" data-easyParallax-animationEnd="0.5" data-easyParallax-animation="rightToLeft" class="ui-easyParallax-trigger ui-carousel box">
 				<div class="carousel-frame">
 					<ul class="carousel-list ui-carousel-list">
 						<li class="carousel-item">1</li>

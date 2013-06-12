@@ -6,17 +6,17 @@
 ;(function ($, window, undefined) {
 	$(document).ready(function(){
 		/*
-		 * Parallax
+		 * EasyParallax
+		 * dependent 'jarallax.js' - http://jarallax.com
 		 */
 		(function () {
 			'use strict';
 
-			var MODULE_NAME = 'Parallax';
-			var PLUGIN_NAME = 'parallax';
+			var MODULE_NAME = 'EasyParallax';
+			var PLUGIN_NAME = 'easyParallax';
 			var Module;
 			var DEFAULT_OPTIONS;
-			// dependent 'jarallax.js' - http://jarallax.com
-			var jarallax = new Jarallax(new ControllerScroll(true));
+			var jarallax = new Jarallax(new ControllerScroll(true)); // dependent 'jarallax.js'
 
 			/**
 			 * DEFAULT_OPTIONS
@@ -25,7 +25,7 @@
 				animation: 'fade' // {string} - jarallax animation pattern - 'fade' | 'rightToLeft' | 'bottomToTop'
 				,animationStart: 0.6 // {number} - animation start point - 1:画面の上からの高さが残り100%でanimation start | 0.5:残り50%でanimation start.
 				,animationEnd: 0.4 // {number} - animation end point - 0:画面の上からの高さが残り0%でanimation end | 0.3:残り30%でanimation end.
-				,elmPosTop: 'auto' // {string | number} - start,end pointの計算で使用する$elm offset top - 'auto':elmのoffset top位置を自動取得 | 100: bodyから100pxの位置にelmがあるとして計算されるようになる。parallax-groupで使用
+				,elmPosTop: 'auto' // {string | number} - start,end pointの計算で使用する$elm offset top - 'auto':elmのoffset top位置を自動取得 | 100: bodyから100pxの位置にelmがあるとして計算されるようになる。easyParallax-groupで使用
 			};
 
 			/**
@@ -37,14 +37,14 @@
 				self.$elm = $(elm);
 
 				// data属性がある場合はoptions値を上書き
-				self.o.animation = (self.$elm.attr('data-parallax-animation'))
-					? (self.$elm.attr('data-parallax-animation'))
+				self.o.animation = (self.$elm.attr('data-easyParallax-animation'))
+					? (self.$elm.attr('data-easyParallax-animation'))
 					: self.o.animation;
-				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
-					? parseFloat(self.$elm.attr('data-parallax-animationStart'))
+				self.o.animationStart = (self.$elm.attr('data-easyParallax-animationStart'))
+					? parseFloat(self.$elm.attr('data-easyParallax-animationStart'))
 					: self.o.animationStart;
-				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd')
-					? parseFloat(self.$elm.attr('data-parallax-animationEnd'))
+				self.o.animationEnd = (self.$elm.attr('data-easyParallax-animationEnd')
+					? parseFloat(self.$elm.attr('data-easyParallax-animationEnd'))
 					: self.o.animationEnd);
 
 				// $elmのposition top位置を取得
@@ -110,7 +110,7 @@
 				fn._trigger = function () {
 					var self = this;
 					if (self.scrollPosTop >= self.endPosTop) {
-						self.$elm.trigger('parallaxEnd');
+						self.$elm.trigger('easyParallaxEnd');
 					}
 				};
 
@@ -168,13 +168,13 @@
 
 
 		/*
-		 * ParallaxGroup
+		 * EasyParallaxGroup
 		 */
 		(function () {
 			'use strict';
 
-			var MODULE_NAME = 'ParallaxGroup';
-			var PLUGIN_NAME = 'parallaxGroup';
+			var MODULE_NAME = 'EasyParallaxGroup';
+			var PLUGIN_NAME = 'easyParallaxGroup';
 			var Module;
 			var DEFAULT_OPTIONS;
 
@@ -184,7 +184,7 @@
 			DEFAULT_OPTIONS = {
 				elmPosAddVal: 50 // {number} - 1つ目の子要素から何px scrollするごとに2つ目以降を反応させるか - 50:50px進むごとに2つ目以降が順に反応
 				,specifyChild: false // {boolean} - true:子要素を手動で指定したい場合
-				,childClassSelector: '[data-parallax-child]' // {selector} - 子要素のselector。specifyChildがtrueの時に指定する - '[data-parallax-child]':data要素で指定 | '.ui-parallax-child':classで指定
+				,childClassSelector: '[data-easyParallax-child]' // {selector} - 子要素のselector。specifyChildがtrueの時に指定する - '[data-easyParallax-child]':data要素で指定 | '.ui-easyParallax-child':classで指定
 			};
 
 			/**
@@ -196,17 +196,17 @@
 				self.$elm = $(elm);
 
 				// data属性がある場合はoptions値を上書き
-				self.o.animation = (self.$elm.attr('data-parallax-animation'))
-					? (self.$elm.attr('data-parallax-animation'))
+				self.o.animation = (self.$elm.attr('data-easyParallax-animation'))
+					? (self.$elm.attr('data-easyParallax-animation'))
 					: self.o.animation;
-				self.o.animationStart = (self.$elm.attr('data-parallax-animationStart'))
-					? parseFloat(self.$elm.attr('data-parallax-animationStart'))
+				self.o.animationStart = (self.$elm.attr('data-easyParallax-animationStart'))
+					? parseFloat(self.$elm.attr('data-easyParallax-animationStart'))
 					: self.o.animationStart;
-				self.o.animationEnd = (self.$elm.attr('data-parallax-animationEnd')
-					? parseFloat(self.$elm.attr('data-parallax-animationEnd'))
+				self.o.animationEnd = (self.$elm.attr('data-easyParallax-animationEnd')
+					? parseFloat(self.$elm.attr('data-easyParallax-animationEnd'))
 					: self.o.animationEnd);
-				self.o.specifyChild = (self.$elm.attr('data-parallax-specifyChild'))
-					? (self.$elm.attr('data-parallax-specifyChild'))
+				self.o.specifyChild = (self.$elm.attr('data-easyParallax-specifyChild'))
+					? (self.$elm.attr('data-easyParallax-specifyChild'))
 					: self.o.specifyChild;
 
 				// set items - パララックスを適用させるitems
@@ -231,10 +231,10 @@
 					});
 				};
 
-				// 子要素に$.parallaxを適用
+				// 子要素に$.easyParallaxを適用
 				fn._action = function () {
 					var self = this;
-					self.$item.parallax(self.o);
+					self.$item.easyParallax(self.o);
 				};
 
 				fn._calc = function () {
@@ -260,13 +260,13 @@
 
 
 		(function () {
-			$('[data-parallax]').parallax();
-			$('[data-parallax-group]').parallaxGroup();
-			$('.p').parallax({
+			$('[data-easyParallax]').easyParallax();
+			$('[data-easyParallax-group]').easyParallaxGroup();
+			$('.p').easyParallax({
 				animation: 'rightToLeft'
 			});
 
-			// callback sample - parallax完了後にcarouselをautoplay
+			// callback sample - easyParallax animation完了後にcarouselをautoplay
 			(function () {
 				$('.ui-carousel').liquidCarousel({
 					autoPlay:             false // {boolean} - true: autoplay
@@ -274,10 +274,10 @@
 					,autoPlayInterval:     1000 // {number} (milli second) - autoplayの間隔
 				});
 
-				var parallax = $('.ui-parallax-trigger').data('parallax');
+				var easyParallax = $('.ui-easyParallax-trigger').data('easyParallax');
 				var carousel = $('.ui-carousel').data('carousel');
 				var isMoved = false;
-				parallax.$elm.on('parallaxEnd', function () {
+				easyParallax.$elm.on('easyParallaxEnd', function () {
 					if (isMoved === false) {
 						isMoved = true;
 						carousel.autoPlay();
